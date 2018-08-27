@@ -3,7 +3,9 @@
   <head>
     <meta charset="iso-8859-7">
   </head>
-  <div class="background-image">
+  
+    <div class="background-image">
+    
     <header>
       <nav class="navigation-bar">
         <ul class="navigation-items">
@@ -13,9 +15,12 @@
         </ul>
       </nav>
     </header>
+    
     <body>
       <div class ="first_section">
-        <h1 class="title-1">Hi, I'm Antoine</h1>
+        <h1 class="title-1">Hi, I'm Kevin</h1>
+        <h2 class="title-2">Mitchell
+          <span id="weather-summary"></span></h2>
         <h2 class="title-2">Welcome to my website</h2>
       </div>
     </div>
@@ -56,11 +61,13 @@
           </form>
         </div>
     </div>
-      <footer>
-        <div class="copyright">
-        <p>Copyright (c) 2017 Copyright Antoine Krajnc All Rights Reserved.</p>
-        </div>
+    
+    <footer>
+      <div class="copyright">
+      <p>Copyright (c) 2017 Copyright Antoine Krajnc All Rights Reserved.</p>
+      </div>
       </footer>
+      
       <script>
         function getRandomColor(){
           return "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
@@ -77,12 +84,14 @@
             var longitude = location.coords.longitude
             
               $.ajax({
-                    url: 'api/v1/weather',
+                    url: 'api/v1/get_weather',
                     type: 'GET',
                     data: { lat: latitude, lon: longitude} ,
                     contentType: 'application/json; charset=utf-8',
                     success: function (response) {
-                      $(".title-2").replaceWith("<h2 class='title-2'>It is currently "+ response["currently"]["temperature"] + " degrees</h2>");
+                      $('#weather-summary').text(response).sumary
+                      debugger
+                      //$(".title-2").replaceWith("<h2 class='title-2'>It is currently "+ response["currently"]["temperature"] + " degrees</h2>");
                     },
                     error: function () {
                         console.log(response);
